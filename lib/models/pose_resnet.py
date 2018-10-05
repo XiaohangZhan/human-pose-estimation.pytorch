@@ -205,7 +205,7 @@ class PoseResNet(nn.Module):
         return x
 
     def init_weights(self, pretrained=''):
-        if os.path.isfile(pretrained):
+        if os.path.isfile(pretrained) or pretrained=='':
             logger.info('=> init deconv weights from normal distribution')
             for name, m in self.deconv_layers.named_modules():
                 if isinstance(m, nn.ConvTranspose2d):
@@ -228,9 +228,12 @@ class PoseResNet(nn.Module):
                     nn.init.normal_(m.weight, std=0.001)
                     nn.init.constant_(m.bias, 0)
 
-            pretrained_state_dict = torch.load(pretrained)
-            logger.info('=> loading pretrained model {}'.format(pretrained))
-            self.load_state_dict(pretrained_state_dict, strict=False)
+            if os.path.isfile(pretrained):
+                pretrained_state_dict = torch.load(pretrained)
+                logger.info('=> loading pretrained model {}'.format(pretrained))
+                self.load_state_dict(pretrained_state_dict, strict=False)
+            else:
+                logger.info('training from scratch')
         else:
             logger.error('=> imagenet pretrained model dose not exist')
             logger.error('=> please download it first')
