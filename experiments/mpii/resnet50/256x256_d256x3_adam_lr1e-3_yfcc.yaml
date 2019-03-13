@@ -18,10 +18,10 @@ DATASET:
   SCALE_FACTOR: 0.25
 MODEL:
   NAME: pose_resnet
-  PRETRAINED: 'models/pytorch/imagenet/resnet50-19c8e357.pth'
+  PRETRAINED: '/mnt/lustre/share/zhanxiaohang/kinematic_exps/yfcc_origin/resnet50_clsloss99_50/checkpoints/convert_iter_42000.pth.tar'
   IMAGE_SIZE:
-  - 384
-  - 384
+  - 256
+  - 256
   NUM_JOINTS: 16
   EXTRA:
     TARGET_TYPE: gaussian

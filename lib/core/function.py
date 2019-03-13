@@ -195,7 +195,8 @@ def validate(config, val_loader, val_dataset, model, criterion, output_dir,
             writer.add_scalar('valid_acc', acc.avg, global_steps)
             if isinstance(name_values, list):
                 for name_value in name_values:
-                    writer.add_scalars('valid', dict(name_value), global_steps)
+                    if name_value in ['AP', 'Mean']:
+                        writer.add_scalars('valid', dict(name_value), global_steps)
             else:
                 writer.add_scalars('valid', dict(name_values), global_steps)
             writer_dict['valid_global_steps'] = global_steps + 1

@@ -1,4 +1,4 @@
 #!/bin/bash
-srun -p Identity_V100 -n1 --gres=gpu:8 --ntasks-per-node 1 \
+srun -p Identity_1080 -w BJ-IDC1-10-10-30-50 -n1 --ntasks-per-node 1 \
     python -u pose_estimation/train.py \
         --cfg $1

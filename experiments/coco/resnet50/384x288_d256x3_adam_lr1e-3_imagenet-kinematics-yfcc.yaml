@@ -1,4 +1,4 @@
-GPUS: '0,1,2,3'
+GPUS: '4,5,6,7'
 DATA_DIR: ''
 OUTPUT_DIR: 'output'
 LOG_DIR: 'log'
@@ -15,7 +15,7 @@ DATASET:
   SCALE_FACTOR: 0.3
 MODEL:
   NAME: 'pose_resnet'
-  PRETRAINED: '/mnt/lustre/share/zhanxiaohang/kinematic_exps/yfcc/encdec_resnet50_shallownet_watershed_nms15_ms_40k_clsloss99_50/checkpoints/convert_iter_40000.pth.tar'
+  PRETRAINED: '/mnt/lustre/share/zhanxiaohang/kinematic_exps/yfcc/resnet50_clsloss99_50_pretrained/checkpoints/convert_iter_40000.pth.tar'
   IMAGE_SIZE:
   - 288
   - 384
@@ -69,7 +69,7 @@ TEST:
   OKS_THRE: 0.9
   USE_GT_BBOX: true
 DEBUG:
-  DEBUG: true
+  DEBUG: false
   SAVE_BATCH_IMAGES_GT: true
   SAVE_BATCH_IMAGES_PRED: true
   SAVE_HEATMAPS_GT: true

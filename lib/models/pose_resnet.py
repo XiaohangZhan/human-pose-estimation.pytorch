@@ -232,6 +232,11 @@ class PoseResNet(nn.Module):
                 pretrained_state_dict = torch.load(pretrained)
                 logger.info('=> loading pretrained model {}'.format(pretrained))
                 self.load_state_dict(pretrained_state_dict, strict=False)
+                keys1 = set(pretrained_state_dict.keys())
+                keys2 = set([k for k,_ in self.named_parameters()])
+                not_loaded = keys2 - keys1
+                for k in not_loaded:
+                    logger.info('caution: {} not loaded'.format(k))
             else:
                 logger.info('training from scratch')
         else:
